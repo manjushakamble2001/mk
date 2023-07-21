@@ -1,0 +1,375 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Wingdings;}}
+{\colortbl ;\red255\green0\blue0;\red243\green164\blue71;\red0\green0\blue0;}
+{\*\generator Riched20 10.0.22621}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\b\f0\fs32\lang9 Q. 1. Implementation of DDL commands of SQL with suitable example\f1\'b7\f0  Create table [20 Marks]\par
+\f1\'b7\f0  Alter table\par
+\f1\'b7\f0  Drop Table\par
+Create table student(Roll no ,sname,date of birth).Add new column into student\par
+relation name address as text data type and column phone of data type integer\par
+\b0\fs22 CREATE TABLE student (\par
+    RollNo INT PRIMARY KEY,\par
+    sname VARCHAR(50),\par
+    dateOfBirth DATE\par
+);\par
+\par
+ALTER TABLE student\par
+ADD address TEXT,\par
+ADD phone INT;\par
+\par
+DROP TABLE student;\par
+\b\par
+\par
+/////////////////////////////////////////////////////////////////////////////////////////////////////////\par
+\fs32 Q. 2. Write a PL/SQL Program to Find Factorial of a Number\fs22\par
+\par
+\par
+SET SERVEROUTPUT ON;\par
+-- PL/SQL program to find factorial\par
+DECLARE\par
+    num NUMBER := 5; -- Change this value to find factorial for a different number\par
+    result NUMBER := 1;\par
+BEGIN\par
+    FOR i IN 1..num LOOP\par
+        result := result * i;\par
+    END LOOP;\par
+\par
+    DBMS_OUTPUT.PUT_LINE('Factorial of ' || num || ' is ' || result);\par
+END;\par
+/\par
+Factorial of 5 is: 120\par
+\par
+\fs32\par
+Q. 1. Implementation of different types of function with suitable examples\par
+\f1\'b7\f0  By using Number function\par
+\f1\'b7\f0  By using Aggregate Function\par
+\f1\'b7\f0  By using Character Function\par
+\f1\'b7\f0  By using Conversion Function\par
+\f1\'b7\f0  By using Date Function \par
+
+\pard\sa200\sl276\slmult1\cf1\fs24 By using Number function\cf0\fs32\par
+
+\pard\sa200\sl276\slmult1\fs22\par
+CREATE TABLE sales (\par
+    amount NUMERIC(105.27 ,33.84 ,72.91 );\par
+2)\par
+SELECT ROUND(amount, 2) AS rounded_amount\par
+FROM sales;\par
+\par
+\cf1 By using Aggregate Function:\cf0\par
+SELECT SUM(amount) AS total_sales\par
+FROM sales;\par
+\par
+\cf1 By using Character Function:\cf0\par
+\par
+CREATE TABLE employees (\par
+    first_name VARCHAR(50)\par
+);\par
+\par
+\par
+INSERT INTO employees (first_name) VALUES ('John');\par
+INSERT INTO employees (first_name) VALUES ('Alice');\par
+INSERT INTO employees (first_name) VALUES ('Bob');\par
+\par
+SELECT UPPER(first_name) AS upper_first_name\par
+FROM employees;\par
+\par
+\cf1 By using Conversion Function:\cf0\par
+CREATE TABLE orders (\par
+    order_date DATE\par
+);\par
+\par
+INSERT INTO orders (order_date) VALUES ('2023-07-10');\par
+INSERT INTO orders (order_date) VALUES ('2023-07-15');\par
+INSERT INTO orders (order_date) VALUES ('2023-07-20');\par
+\par
+\par
+We can use the TO_CHAR function to convert the dates to a specific date format:\par
+SELECT TO_CHAR(order_date, 'DD-MON-YYYY') AS formatted_date\par
+FROM orders;\par
+Result\par
+formatted_date\par
+10-JUL-2023\par
+15-JUL-2023\par
+20-JUL-2023\par
+\cf1 By using Date Function\cf0\par
+Example:\par
+SELECT SYSDATE AS current_date_time\par
+FROM dual;\par
+\par
+\par
+\par
+\fs32 Q. 1. PL/SQL Program to Print Table of a Number [20 Marks]\par
+\fs22 SET SERVEROUTPUT ON;\par
+-- PL/SQL program to print the table of a number\par
+DECLARE\par
+    num NUMBER := 5; -- Change this value to print the table for a different number\par
+BEGIN\par
+    DBMS_OUTPUT.PUT_LINE('Table of ' || num);\par
+    DBMS_OUTPUT.PUT_LINE('----------------');    \par
+    FOR i IN 1..10 LOOP\par
+        DBMS_OUTPUT.PUT_LINE(num || ' * ' || i || ' = ' || num * i);\par
+    END LOOP;\par
+END;\par
+/\par
+..................................\par
+BEGIN\par
+    print_table(5); -- Replace 5 with any number for which you want to print the table\par
+END;\par
+/\par
+\par
+\par
+\fs28 Q. 2. Implementation of different types of Joins\par
+\f1\'b7\f0  Inner Join\par
+\f1\'b7\f0  Outer Join\par
+\f1\'b7\f0  Natural Join [20 Marks]\par
+Customer(customer_id,first_name)\par
+Order(order_id,amount)\par
+Cust_order(customerid , first_amount,amount)\par
+\fs22\par
+\par
+CREATE TABLE Customer (\par
+    customer_id INT,\par
+    first_name VARCHAR(50)\par
+);\par
+INSERT INTO Customer (customer_id, first_name) VALUES (1, 'John');\par
+INSERT INTO Customer (customer_id, first_name) VALUES (2, 'Alice');\par
+INSERT INTO Customer (customer_id, first_name) VALUES (3, 'Bob');\par
+\par
+\par
+CREATE TABLE "Order" (\par
+    order_id INT,\par
+    amount NUMERIC(10, 2)\par
+);\par
+INSERT INTO "Order" (order_id, amount) VALUES (1001, 500);\par
+INSERT INTO "Order" (order_id, amount) VALUES (1002, 300);\par
+INSERT INTO "Order" (order_id, amount) VALUES (1003, 200);\par
+\par
+CREATE TABLE Cust_order (\par
+    customer_id INT,\par
+    first_amount NUMERIC(10, 2),\par
+    amount NUMERIC(10, 2)\par
+);\par
+\par
+\par
+\cf1 Inner Join:\cf0\par
+SELECT c.customer_id, c.first_name, co.first_amount, co.amount\par
+FROM Customer c\par
+INNER JOIN Cust_order co ON c.customer_id = co.customer_id;\par
+\par
+result of innere join \par
+ustomer_id\tab first_name\tab first_amount\tab amount\par
+1\tab                   John\tab                   100                        500\par
+2\tab Alice\tab 200\tab 300\par
+3\tab Bob\tab 300\tab 200\par
+\par
+\cf1 Left Outer Join:\cf0\par
+SELECT c.customer_id, c.first_name, co.first_amount, co.amount\par
+FROM Customer c\par
+LEFT JOIN Cust_order co ON c.customer_id = co.customer_id;\par
+Result of Left Outer Join:\par
+\par
+customer_id\tab first_name\tab first_amount\tab amount\par
+1\tab John\tab 100\tab 500\par
+2\tab Alice\tab 200\tab 300\par
+3\tab Bob\tab 300\tab 200\par
+\cf1 NATURAL join\cf0\par
+SELECT customer_id, first_name, first_amount, amount\par
+FROM Customer NATURAL JOIN Cust_order;\par
+\par
+Result of Natural Join:\par
+\par
+customer_id\tab first_name\tab first_amount\tab amount\par
+1\tab John\tab 100\tab 500\par
+2\tab Alice\tab 200\tab 300\par
+3\tab Bob\tab 300\tab 200\par
+\par
+\par
+\par
+\fs28 Q. 2. Write a program to implement SQL Cursors.\fs22\par
+CREATE TABLE employees (\par
+    employee_id INT PRIMARY KEY,\par
+    first_name VARCHAR(50),\par
+    last_name VARCHAR(50),\par
+    department VARCHAR(50),\par
+    salary NUMERIC(10, 2)\par
+);\par
+.......................................\par
+SET SERVEROUTPUT ON;\par
+\par
+-- PL/SQL program with a cursor\par
+DECLARE\par
+    -- Declare variables to store data from the cursor\par
+    emp_id employees.employee_id%TYPE;\par
+    emp_first_name employees.first_name%TYPE;\par
+    emp_last_name employees.last_name%TYPE;\par
+    emp_department employees.department%TYPE;\par
+    emp_salary employees.salary%TYPE;\par
+\par
+    -- Declare the cursor\par
+    CURSOR emp_cursor IS\par
+        SELECT employee_id, first_name, last_name, department, salary\par
+        FROM employees;\par
+\par
+BEGIN\par
+    -- Open the cursor\par
+    OPEN emp_cursor;\par
+\par
+    -- Fetch data from the cursor and process it\par
+    LOOP\par
+        FETCH emp_cursor INTO emp_id, emp_first_name, emp_last_name, emp_department, emp_salary;\par
+\par
+        -- Exit the loop if there is no more data to fetch\par
+        EXIT WHEN emp_cursor%NOTFOUND;\par
+\par
+        -- Process the fetched data (print it in this example)\par
+        DBMS_OUTPUT.PUT_LINE('Employee ID: ' || emp_id);\par
+        DBMS_OUTPUT.PUT_LINE('Name: ' || emp_first_name || ' ' || emp_last_name);\par
+        DBMS_OUTPUT.PUT_LINE('Department: ' || emp_department);\par
+        DBMS_OUTPUT.PUT_LINE('Salary: ' || emp_salary);\par
+        DBMS_OUTPUT.PUT_LINE('--------------------------');\par
+    END LOOP;\par
+\par
+    -- Close the cursor\par
+    CLOSE emp_cursor;\par
+END;\par
+/\par
+////////////////////////////////////////////////////////////////////////////////////////////////\fs32 //////\par
+ Q)Study & Implementation of SQL Triggers.\par
+
+\pard\sa200\sl276\slmult1\cf1\fs22 INSERT Trigger:\cf0\par
+An INSERT trigger is executed automatically after an INSERT operation on the table. Let's create an INSERT trigger that inserts a record into an "order_log" table whenever a new order is inserted into the "orders" table.\par
+
+\pard\sa200\sl276\slmult1\par
+CREATE TABLE orders (\par
+    order_id INT PRIMARY KEY,\par
+    order_date DATE,\par
+    amount NUMERIC(10, 2)\par
+);\par
+\par
+\par
+CREATE TABLE order_log (\par
+    log_id INT PRIMARY KEY,\par
+    order_id INT,\par
+    action_date DATE\par
+);\par
+\par
+CREATE OR REPLACE TRIGGER orders_insert_trigger\par
+AFTER INSERT ON orders\par
+FOR EACH ROW\par
+BEGIN\par
+    INSERT INTO order_log (log_id, order_id, action_date)\par
+    VALUES (NULL, :NEW.order_id, SYSDATE);\par
+END;\par
+/.....................................................\par
+\cf1 //or update trigger\cf0\par
+ALTER TABLE orders ADD last_modified DATE;\par
+\par
+CREATE OR REPLACE TRIGGER orders_update_trigger\par
+AFTER UPDATE OF amount ON orders\par
+FOR EACH ROW\par
+BEGIN\par
+    UPDATE orders\par
+    SET last_modified = SYSDATE\par
+    WHERE order_id = :NEW.order_id;\par
+END;\par
+/\par
+///////////////////////////////////////////////////////////////////////////////////////////////////////////\par
+\fs28 Q. 2. Implementation of different types of operators in SQL\fs22\par
+\f1\'b7\f0  By using Arithmetic Operators\par
+\f1\'b7\f0  By using Logical Operators\par
+\f1\'b7\f0  By using Comparison Operator\par
+\f1\'b7\f0  By using Special Operator\par
+\f1\'b7\f0  By using Set Operation \par
+\par
+\par
+\cf1\f1\'b7\f0  By using Arithmetic Operators\cf0\par
+CREATE TABLE numbers (\par
+    a INT,\par
+    b INT\par
+);\par
+\par
+INSERT INTO numbers (a, b) VALUES (10, 5);\par
+INSERT INTO numbers (a, b) VALUES (20, 8);\par
+INSERT INTO numbers (a, b) VALUES (7, 3);\par
+-- Assuming we have a table called "numbers" with two columns "a" and "b"\par
+SELECT a, b, a + b AS sum, a - b AS difference, a * b AS product, a / b AS division, a % b AS modulus\par
+FROM numbers;\par
+\cf2\f1\'b7\f0  By using Logical Operators\cf0\par
+CREATE TABLE students (\par
+    name VARCHAR(50),\par
+    age INT\par
+);\par
+\par
+INSERT INTO students (name, age) VALUES ('John', 20);\par
+INSERT INTO students (name, age) VALUES ('Alice', 22);\par
+INSERT INTO students (name, age) VALUES ('Bob', 25);\par
+INSERT INTO students (name, age) VALUES ('Emma', 18);\par
+INSERT INTO students (name, age) VALUES ('Michael', 27);\par
+\par
+-- Assuming we have a table called "students" with columns "name" and "age"\par
+SELECT name, age\par
+FROM students\par
+WHERE age > 18 AND age < 25;\par
+\par
+\cf2\f1\'b7\f0  By using Comparison Operator\par
+\par
+\cf0 CREATE TABLE employees (\par
+    first_name VARCHAR(50),\par
+    last_name VARCHAR(50),\par
+    salary NUMERIC(10, 2),\par
+    department VARCHAR(50)\par
+);\par
+\par
+INSERT INTO employees (first_name, last_name, salary, department) VALUES ('John', 'Doe', 55000.00, 'IT');\par
+INSERT INTO employees (first_name, last_name, salary, department) VALUES ('Alice', 'Smith', 60000.00, 'HR');\par
+INSERT INTO employees (first_name, last_name, salary, department) VALUES ('Bob', 'Johnson', 48000.00, 'Finance');\par
+INSERT INTO employees (first_name, last_name, salary, department) VALUES ('Emma', 'Lee', 70000.00, 'IT');\par
+INSERT INTO employees (first_name, last_name, salary, department) VALUES ('Michael', 'Brown', 52000.00, 'Finance');\par
+-- Assuming we have a table called "employees" with columns "salary" and "department"\par
+SELECT *\par
+FROM employees\par
+WHERE salary >= 50000 AND department = 'IT';\par
+\cf1 Special Operators:\par
+\par
+\cf0 CREATE TABLE employees (\par
+    first_name VARCHAR(50),\par
+    last_name VARCHAR(50)\par
+);\par
+\par
+INSERT INTO employees (first_name, last_name) VALUES ('John', 'Doe');\par
+INSERT INTO employees (first_name, last_name) VALUES ('Alice', 'Smith');\par
+INSERT INTO employees (first_name, last_name) VALUES ('Bob', 'Johnson');\par
+INSERT INTO employees (first_name, last_name) VALUES ('Emma', 'Lee');\par
+INSERT INTO employees (first_name, last_name) VALUES ('Michael', 'Brown');\cf1\par
+\cf0 -- Assuming we have a table called "employees" with columns "first_name" and "last_name"\par
+SELECT first_name || ' ' || last_name AS full_name\par
+FROM employees\par
+WHERE last_name IS NOT NULL;\par
+\par
+\cf1 Set Operation:set operations are used to combine the results of two or more SELECT queries.\par
+\cf0 CREATE TABLE table1 (\par
+    id INT,\par
+    value VARCHAR(50)\par
+);\par
+\par
+CREATE TABLE table2 (\par
+    id INT,\par
+    value VARCHAR(50)\par
+\cf3 );\par
+\par
+-- Insert data into table1\par
+INSERT INTO table1 (id, value) VALUES (1, 'Value 1');\par
+INSERT INTO table1 (id, value) VALUES (2, 'Value 2');\par
+INSERT INTO table1 (id, value) VALUES (3, 'Value 3');\par
+\par
+-- Insert data into table2\par
+INSERT INTO table2 (id, value) VALUES (2, 'Value 2');\par
+INSERT INTO table2 (id, value) VALUES (3, 'Value 3');\par
+INSERT INTO table2 (id, value) VALUES (4, 'Value 4');\par
+\cf0 -- Assuming we have two tables "table1" and "table2" with the same columns "id" and "value"\par
+-- UNION operation to combine the results and remove duplicates\par
+SELECT id, value FROM table1\par
+UNION\par
+SELECT id, value FROM table2;\par
+}
+ 
